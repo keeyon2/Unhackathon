@@ -96,14 +96,45 @@ train = [
     ("Skipping makes me feel delighted", 'happy'),
     ("Being hurt is a sorrowful thing", 'sad'),
     ("Making something new makes me thrilled", 'happy'),
-    ("When bad things happen, I feel mournful", 'sad')
+    ("When bad things happen, I feel mournful", 'sad'),
+    ("I love happy things", 'happy'),
+    ("I hate horrible things", 'sad'),
+    ("There are beautiful joyful enjoyable things", 'happy'),
+    ("I hate it when bad things make me upset and sad", 'sad'),
+    ("Happy radiant delightful things make me pleased and content", 'happy'),
+    ("Miserable depressing horrible awful people make me heartbroken and unhappy", 'sad'),
+    ("Life is beautiful", 'happy'),
+    ("Bad sad crazy horrible wrong unpleasant stuff sucks", 'sad'),
+    ("There are many beautiful thigns about my day", 'happy'),
+    ("Horror painful sad bad tough events are hard", 'sad'),
+    ("Fun loving beautiful awesome eventufl exciting things make my life great", 'happy'),
+    ("Sad is bad", 'sad'),
+    ("I enjoy doing fun stuff", 'happy'),
+    ("No I hate this", 'sad'),
+    ("I enjoy doing fun", 'happy'),
+    ("I dont care about anything", 'sad'),
+    ("Yes I love this", 'happy'),
+    ("Life is tough", 'sad'),
+    ("Today is wonderful", 'happy'),
+    ("unhappy, sorrowful, dejected, depressed, downcast, miserable, down", 'sad'),
+    ("cheerful, cheery, merry, joyful, jovial, jolly, jocular, gleeful, carefree, untroubled", 'happy'),
+    ("despondent, despairing, disconsolate, desolate, wretched, glum", 'sad' ), 
+    ("delighted, smiling, beaming, grinning, in good spirits, in a good mood, lighthearted", 'happy'),
+    ("gloomy, doleful, dismal, melancholy, mournful, woebegone, forlorn, crestfallen, heartbroken, inconsolable", 'sad'),  
+    ("pleased, contented, content, satisfied, gratified, buoyant, radiant, sunny, blithe, joyous, beatific", 'happy')
+
 
 ]
 
-
 cl = NaiveBayesClassifier(train)
 
-print cl.classify("What a wonderful world")  # "pos"
-print cl.classify("I don't like their pizza.")  # "neg"
-print cl.classify("I hate life's tests :(")
+def analyzeString(testingString):
+    if ':(' in testingString :
+        return 'sad'
+    if ': (' in testingString :
+        return 'sad'
 
+    return cl.classify("testingString")    
+
+
+print analyzeString("Just finished my exam, time to cry myself to sleep")
