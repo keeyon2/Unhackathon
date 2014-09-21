@@ -105,5 +105,5 @@ cl = NaiveBayesClassifier(train)
 
 print cl.classify("What a wonderful world")  # "pos"
 print cl.classify("I don't like their pizza.")  # "neg"
-print cl.classify("I hate life")
+print cl.classify("I hate life's tests :(")
 
