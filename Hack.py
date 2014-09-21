@@ -121,20 +121,109 @@ train = [
     ("despondent, despairing, disconsolate, desolate, wretched, glum", 'sad' ), 
     ("delighted, smiling, beaming, grinning, in good spirits, in a good mood, lighthearted", 'happy'),
     ("gloomy, doleful, dismal, melancholy, mournful, woebegone, forlorn, crestfallen, heartbroken, inconsolable", 'sad'),  
-    ("pleased, contented, content, satisfied, gratified, buoyant, radiant, sunny, blithe, joyous, beatific", 'happy')
-
+    ("pleased, contented, content, satisfied, gratified, buoyant, radiant, sunny, blithe, joyous, beatific", 'happy'),
+    ("gloomy, doleful, dismal, melancholy, mournful, woebegone, forlorn, crestfallen, heartbroken, inconsolable", 'sad'),
+    ("super, exciting amazing awesome great cool wonerful", 'happy'),
+    ("gloomy, doleful, dismal, melancholy, mournful, woebegone, forlorn, crestfallen, heartbroken, inconsolable", 'sad'),
+    ("Today is wonderful", 'happy'),
+    ("unhappy, sorrowful, dejected, depressed, downcast, miserable, down", 'sad'),
+    ("cheerful, cheery, merry, joyful, jovial, jolly, jocular, gleeful, carefree, untroubled", 'happy'),
+    ("despondent, despairing, disconsolate, desolate, wretched, glum", 'sad' ), 
+    ("delighted, smiling, beaming, grinning, in good spirits, in a good mood, lighthearted", 'happy'),
+    ("gloomy, doleful, dismal, melancholy, mournful, woebegone, forlorn, crestfallen, heartbroken, inconsolable", 'sad'),  
+    ("pleased, contented, content, satisfied, gratified, buoyant, radiant, sunny, blithe, joyous, beatific", 'happy'),
+    ("gloomy, doleful, dismal, melancholy, mournful, woebegone, forlorn, crestfallen, heartbroken, inconsolable", 'sad'),
+    ("super, exciting amazing awesome great cool wonerful", 'happy'),
+    ("unhappy, sorrowful, dejected, depressed, downcast, miserable, down", 'sad'),
+    ("cheerful, cheery, merry, joyful, jovial, jolly, jocular, gleeful, carefree, untroubled", 'happy'),
+    ("despondent, despairing, disconsolate, desolate, wretched, glum", 'sad' ), 
+    ("delighted, smiling, beaming, grinning, in good spirits, in a good mood, lighthearted", 'happy'),
+    ("gloomy, doleful, dismal, melancholy, mournful, woebegone, forlorn, crestfallen, heartbroken, inconsolable", 'sad'),  
+    ("pleased, contented, content, satisfied, gratified, buoyant, radiant, sunny, blithe, joyous, beatific", 'happy'),
+    ("gloomy, doleful, dismal, melancholy, mournful, woebegone, forlorn, crestfallen, heartbroken, inconsolable", 'sad'),
+    ("super, exciting amazing awesome great cool wonerful", 'happy'),
+    ("upsetting tough shit horrible stupid awful bad", 'sad'),
+    ("KICKASS kick ass bad ass awesome sweet rad bad ass fun cool", 'happy'),
+    ("I love numbers and other cool things", 'happy'),
+    ("KICKASS kick ass bad ass awesome sweet rad bad ass fun cool", 'happy'),
+    ("I love numbers and other cool things", 'happy'),
+    ("pleased, contented, content, satisfied, gratified, buoyant, radiant, sunny, blithe, joyous, beatific", 'happy'),
+    ("Laughing is cheerful and awesome and cool", 'happy'),
+    ("pleased, contented, content, satisfied, gratified, buoyant, radiant, sunny, blithe, joyous, beatific", 'happy'),
+    ("Skipping makes me feel delighted", 'happy'),
+    ("Today is a good day", 'happy'),
+    ("I love having a smile on my face", 'happy'),
+    ("What a wonderful world", 'happy'),
+    ("Life is wonderful", 'happy'),
+    ("There are cool people everywhere", 'happy'),
+    ("I enjoy things", 'happy'),
+    ("Everythign is awesome", 'happy'),
+    ("People are amazing", 'happy'),
+    ("Things are all great", 'happy'),
+    ("This is splendid", 'happy'),
+    ("All I can do is smile", 'happy'),
+    ("Everything is too amazing", 'happy'),
+    ("I love all the things", 'happy'),
+    ("Today is a good day", 'happy'),
+    ("I love having a smile on my face", 'happy'),
+    ("What a wonderful world", 'happy'),
+    ("Life is wonderful", 'happy'),
+    ("There are cool people everywhere", 'happy'),
+    ("I enjoy things", 'happy'),
+    ("Everythign is awesome", 'happy'),
+    ("People are amazing", 'happy'),
+    ("Things are all great", 'happy'),
+    ("This is splendid", 'happy'),
+    ("All I can do is smile", 'happy'),
+    ("Everything is too amazing", 'happy'),
+    ("I love all the things", 'happy'),
+    ("Fuuuuck fuck FUCK fuck fuck Fuuuckkkk fuckk fuck fuuckk you", 'sad'),
+    ("Fake stupid lame shit tough bad horrible lame", 'sad'),
+    ("I hate bad mean rude cruel shitty evil harsh devil devilish", 'sad')
 
 ]
 
 cl = NaiveBayesClassifier(train)
 
-def analyzeString(testingString):
+#Initial Testing, no need to use
+def basicAnalyzeString(testingString):
     if ':(' in testingString :
         return 'sad'
     if ': (' in testingString :
         return 'sad'
-
+ 
     return cl.classify("testingString")    
+  
+#Use me.  I will most accurately classify strint
+def classifyString(testingString):
+    prob_dist = cl.prob_classify(testingString)   
+    sadChance = round(prob_dist.prob("sad"), 2)
+    happyChance = round(prob_dist.prob("happy"), 2)
+    
+    if sadChance > happyChance:
+        return 'sad' 
+    else:
+        return 'happy'
+
+#If needed more details about a classification, run this
+def printClassifyStringDetails(testingString):
+    prob_dist = cl.prob_classify(testingString)   
+    sadChance = round(prob_dist.prob("sad"), 2)
+    happyChance = round(prob_dist.prob("happy"), 2)
+
+    print testingString
+    print "Sad Prob"
+    print sadChance
+    print
+    print "Happy Prob"
+    print happyChance
+    return
 
 
-print analyzeString("Just finished my exam, time to cry myself to sleep")
+print classifyString("I am super excited to be sponsoring and repping @ordrin! This is going to be a kick ass weekend!")
+print
+printClassifyStringDetails("If you know that'll make me upset, why do you do it?!")
+printClassifyStringDetails("I hate when people are lame and stupid")
+printClassifyStringDetails("Her heart finally told her to stop wasting her time.")
+print 
+
