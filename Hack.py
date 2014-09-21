@@ -88,8 +88,15 @@ train = [
     ("I ain't feeling dandy today.", 'sad'),
     ("I feel amazing!", 'happy'),
     ('Gary is a friend of mine.', 'happy'),
-    ("I can't believe I'm doing this.", 'sad')
-
+    ("I can't believe I'm doing this.", 'sad'),
+    ("Coding is fun.", 'happy'),
+    ("Dieing sucks", 'sad'),
+    ("Laughing is cheerful and awesome", 'happy'),
+    ("I feel bitter when being cheated", 'sad'),
+    ("Skipping makes me feel delighted", 'happy'),
+    ("Being hurt is a sorrowful thing", 'sad'),
+    ("Making something new makes me thrilled", 'happy'),
+    ("When bad things happen, I feel mournful", 'sad')
 
 ]
 
@@ -98,3 +105,5 @@ cl = NaiveBayesClassifier(train)
 
 print cl.classify("What a wonderful world")  # "pos"
 print cl.classify("I don't like their pizza.")  # "neg"
+print cl.classify("I hate life")
+
